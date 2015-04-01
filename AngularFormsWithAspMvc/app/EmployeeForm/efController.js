@@ -15,6 +15,17 @@
                 "Администратор",
         ];
 
+        $scope.programmingLanguages = [
+            "C",
+            "C++",
+            "C#",
+            "JavaScript",
+            "Java",
+            "Pascal",
+            "Perl",
+            "PHP"
+        ];
+
         $scope.submitForm = function () {
 
             if ($scope.editableEmployee.id == 0) {
