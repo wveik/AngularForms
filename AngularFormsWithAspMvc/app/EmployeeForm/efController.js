@@ -1,6 +1,10 @@
 ﻿angularFormsApp.controller('efController',
-    function EmployeeFormController($scope, $window, DataService) {
-        $scope.employee = DataService.employee;
+    function EmployeeFormController($scope, $window, $routeParams, DataService) {
+
+        if ($routeParams.id)
+            $scope.employee = DataService.getEmployee($routeParams.id);
+        else
+            $scope.employee = { id: 0 };
 
         $scope.editableEmployee = angular.copy($scope.employee);
 
@@ -12,12 +16,21 @@
         ];
 
         $scope.submitForm = function () {
+
+            if ($scope.editableEmployee.id == 0) {
+                //Вставка нового сотрудника
+                DataService.insertEmployee($scope.editableEmployee);
+            } else {
+                //Редактирование сотрудника
+                DataService.updateEmployee($scope.editableEmployee);
+            }
+
             $scope.employee = angular.copy($scope.editableEmployee);
             $window.history.back();
         }
 
         $scope.cancelForm = function () {
-
+            $window.history.back();
         }
     }
 ); 
