@@ -8,5 +8,9 @@
                 "Финансовый",
                 "Администратор",
         ];
+
+        $scope.submitForm = function () {
+            console.log('kll');
+        }
     }
 ); 
