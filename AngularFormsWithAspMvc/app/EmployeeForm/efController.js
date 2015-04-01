@@ -1,6 +1,6 @@
 ﻿angularFormsApp.controller('efController',
-    function EmployeeFormController($scope, efService) {
-        $scope.employee = efService.employee;
+    function EmployeeFormController($scope, DataService) {
+        $scope.employee = DataService.employee;
 
         $scope.departments = [
                 "Инжинер",
@@ -10,7 +10,7 @@
         ];
 
         $scope.submitForm = function () {
-            console.log('kll');
+            
         }
     }
 ); 
