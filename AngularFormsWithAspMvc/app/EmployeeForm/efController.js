@@ -1,6 +1,8 @@
 ﻿angularFormsApp.controller('efController',
-    function EmployeeFormController($scope, DataService) {
+    function EmployeeFormController($scope, $window, DataService) {
         $scope.employee = DataService.employee;
+
+        $scope.editableEmployee = angular.copy($scope.employee);
 
         $scope.departments = [
                 "Инжинер",
@@ -10,7 +12,12 @@
         ];
 
         $scope.submitForm = function () {
-            
+            $scope.employee = angular.copy($scope.editableEmployee);
+            $window.history.back();
+        }
+
+        $scope.cancelForm = function () {
+
         }
     }
 ); 
