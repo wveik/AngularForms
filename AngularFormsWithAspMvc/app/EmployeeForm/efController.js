@@ -1,6 +1,6 @@
 ﻿angularFormsApp.controller('efController',
     function EmployeeFormController($scope, $window, $routeParams, DataService, $modal) {
-
+        
         if ($routeParams.id)
             $scope.employee = DataService.getEmployee($routeParams.id);
         else
@@ -26,6 +26,10 @@
             "PHP"
         ];
 
+        $scope.shouldShowFullName = function () {
+            return true;
+        }
+
         $scope.submitForm = function () {
 
             if ($scope.editableEmployee.id == 0) {
@@ -45,7 +49,11 @@
         $scope.cancelForm = function () {
             //$window.history.back();
             
-            $modal.window.dismiss();
+           $modal.window.dismiss();
+        }
+
+        $scope.checkFullName = function () {
+            return (!$scope.editableEmployee.fullName || $scope.editableEmployee.fullName.length === 0);
         }
     }
 ); 

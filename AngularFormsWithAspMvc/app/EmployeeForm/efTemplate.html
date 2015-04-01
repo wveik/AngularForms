@@ -10,6 +10,9 @@
                 <div class="col-sm-9">
                     <input type="text" id="fullName" name="fullName" class="form-control"
                            ng-model="editableEmployee.fullName" />
+                    <span class="error" ng-show="checkFullName()">
+                        Заполните полное имя!
+                    </span>
                 </div>
             </div>
 
@@ -43,6 +46,46 @@
                 <div class="col-sm-9">
                     <timepicker name="breakTime" ng-model="editableEmployee.breakTime">
                     </timepicker>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label for="interviewRating" class="col-sm-3 control-label">Interview Rating</label>
+                <div class="rating-control col-sm-3">
+                    <rating id=" interviewrating" name="interviewRating"
+                            ng-model="interviewRating"
+                            max="10" on-hover="hoveringOver(value)" on-leave="overStar = null" />
+                </div>
+                <div class="rating-control">
+                    <span class="label"
+                          ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}"
+                          ng-show="overStar">{{percent}}%</span>
+                </div>
+            </div>
+
+            <div class="col-sm-offset-3 col-sm-9">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="isUnderNonCompete"
+                               ng-model="editableEmployee.isUnderNonCompete" />
+                        <span tooltip="Contact Legal if you are uncertain"
+                              tooltip-placement="right"
+                              tooltip-trigger="mouseenter">
+                            Is employee under a non-compete contract?
+                            </span>
+</label>
+                </div>
+            </div>
+
+            <div class="form-group" collapse="!editableEmployee.isUnderNonCompete">
+                <label for="nonCompeteNotes" class="col-sm-3 control-label">
+                    Non-Compete Notes
+                </label>
+                <div class="col-sm-9">
+                    <textarea name="notes" id="notes" class="form-control" rows="5" cols="40"
+                              ng-model="editableEmployee.nonCompeteNotes"></textarea>
                 </div>
             </div>
 
@@ -131,4 +174,5 @@
         </div>
 
     </div>
+
 </div>
